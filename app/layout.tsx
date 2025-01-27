@@ -20,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressContentEditableWarning suppressHydrationWarning>
-      <body className={`${geist.className} antialiased`}>
+      <body
+        className={`${geist.className} antialiased flex flex-col min-h-screen`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
