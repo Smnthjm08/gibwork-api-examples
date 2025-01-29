@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,13 +13,14 @@ export default function Home() {
         GibWork.
       </p>
       <div className="space-x-4">
-
-      <Button size="lg" className="text-lg">
-        Explore <ArrowRight className="ml-2 h-5 w-5" />
-      </Button>
-      <Button size="lg" className="text-lg">
-        Get Started <ArrowRight className="ml-2 h-5 w-5" />
-      </Button>
+        <Link href="/explore">
+          <Button size="lg" className="text-lg">
+            Explore <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
+        <Button size="lg" className="text-lg">
+          Get Started <ArrowRight className="ml-2 h-5 w-5" />
+        </Button>
       </div>
     </div>
   );
