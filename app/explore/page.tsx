@@ -24,6 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import TaskCardSkeleton from "@/components/task-card-skeleton";
 
 const sortByOptions = [
   { value: "isFeatured", label: "Featured" },
@@ -98,7 +99,7 @@ export default function ExplorePage() {
   };
 
   if (isLoading) {
-    return <div className="text-center p-4">Loading...</div>;
+    return <TaskCardSkeleton />
   }
 
   if (error) {

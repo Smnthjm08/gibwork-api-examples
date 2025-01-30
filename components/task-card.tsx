@@ -17,7 +17,9 @@ function formatTimeRemaining(deadline: Date) {
   const diff = deadline.getTime() - now.getTime();
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-  if (days > 30) {
+  if (days < 0) {
+    return `Ended ${Math.abs(days)} days ago.`;
+  } else if (days > 30) {
     const months = Math.floor(days / 30);
     return `Ends in ${months} month${months > 1 ? "s" : ""}`;
   } else if (days > 7) {
