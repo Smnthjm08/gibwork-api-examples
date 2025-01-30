@@ -4,6 +4,7 @@ import { Menu, WalletMinimal, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { useState } from "react"
+import { ModeToggle } from "./mode-toggle"
 
 export default function NavBar() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
@@ -56,7 +57,8 @@ export default function NavBar() {
         </Link>
       </section>
 
-      <section className="flex items-center">
+      <section className="flex items-center gap-3">
+        <ModeToggle />
         <Button className="p-2 sm:px-4 sm:py-2 text-xs sm:text-sm">
           <WalletMinimal className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
           Select Wallet
