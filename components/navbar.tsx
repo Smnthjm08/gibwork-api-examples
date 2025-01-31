@@ -56,16 +56,10 @@ export default function NavBar() {
               Home
             </Link>
             <Link
-              href="/about"
+              href="task/create"
               className="text-lg font-semibold hover:opacity-75 transition-opacity"
             >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="text-lg font-semibold hover:opacity-75 transition-opacity"
-            >
-              Contact
+              Create Task
             </Link>
             <ClientWalletMultiButton />
           </section>
@@ -80,22 +74,16 @@ export default function NavBar() {
           Home
         </Link>
         <Link
-          href="/about"
+          href="/task/create"
           className="text-lg font-semibold hover:text-primary transition-colors"
         >
-          About
-        </Link>
-        <Link
-          href="/contact"
-          className="text-lg font-semibold hover:text-primary transition-colors"
-        >
-          Contact
+          Create Task
         </Link>
       </section>
 
       <section className="flex items-center gap-3">
         <ModeToggle />
-        <ClientWalletMultiButton/>
+        <ClientWalletMultiButton />
       </section>
     </nav>
   );

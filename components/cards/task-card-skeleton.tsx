@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-import { Skeleton } from "./ui/skeleton";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { Skeleton } from "../ui/skeleton";
 
 export default function TaskCardSkeleton() {
   return (
@@ -48,16 +48,15 @@ export default function TaskCardSkeleton() {
         ))}
       </div>
 
-      {/* Pagination Skeleton */}
       <div className="flex justify-center my-8">
         <div className="flex gap-2">
-          <Skeleton className="h-10 w-24" /> {/* Previous button */}
+          <Skeleton className="h-10 w-24" /> 
           <div className="flex gap-1">
             {[1, 2, 3].map((i) => (
               <Skeleton key={i} className="h-10 w-10" />
             ))}
           </div>
-          <Skeleton className="h-10 w-24" /> {/* Next button */}
+          <Skeleton className="h-10 w-24" /> 
         </div>
       </div>
     </main>

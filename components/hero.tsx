@@ -10,7 +10,6 @@ const Hero = () => {
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link href="https://app.gib.work/" target="_blank">
-              {/* <Badge variant="outline"> */}
               <Badge>
                 app.gib.work
                 <ArrowUpRight className="ml-2 size-4" />

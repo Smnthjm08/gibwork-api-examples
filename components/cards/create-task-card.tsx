@@ -19,10 +19,10 @@ import { Separator } from "@/components/ui/separator";
 import axios from "axios";
 
 export default function CreateTaskCard() {
-  const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { sendTransaction, publicKey } = useWallet();
 
   const form = useForm({
     defaultValues: {
@@ -78,21 +78,21 @@ export default function CreateTaskCard() {
         ...values.token,
         amount: Number(values.token.amount),
       },
-      payer: publicKey.toString(), // Use connected wallet address as payer
+      payer: publicKey.toString(),
     };
 
-    try {
-      const response = await axios.post(
-        "https://api2.gib.work/tasks/public/transaction",
-        {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formattedValues),
-        }
-      );
+      try {
+        const response = await axios.post(
+          "https://api2.gib.work/tasks/public/transaction",
+          formattedValues, 
+          {
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      
 
       if (!response) {
         throw new Error(`API error: ${response}`);
@@ -160,7 +160,6 @@ export default function CreateTaskCard() {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="content"
@@ -268,7 +267,7 @@ export default function CreateTaskCard() {
               {loading ? (
                 <>
                   <Loader className="w-5 h-5 mr-2 animate-spin" />
-                  Creating Task...
+                  Creating...
                 </>
               ) : (
                 "Create Task"

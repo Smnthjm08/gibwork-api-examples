@@ -12,7 +12,6 @@ import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { ExploreData } from "../../types/types";
 import NoTaskFound from "../no-task-found";
-
 function formatTimeRemaining(deadline: Date) {
   const now = new Date();
   const diff = deadline.getTime() - now.getTime();
@@ -37,56 +36,65 @@ interface TaskCardProps {
 
 export default function TaskCard({ exploreData }: TaskCardProps) {
   return (
-    <div className="grid grid-cols-1 gap-4 p-4">
+    <div className="grid grid-cols-1 gap-4 p-4 ">
       {exploreData.length > 0 ? (
         <div className="grid grid-cols-1 gap-4 p-4">
           {exploreData.map((exp) => (
-            <Card key={exp?.id} className="flex flex-col h-full bg-card">
-              <CardHeader className="flex flex-row items-center gap-4 pb-4">
-                <div className="relative w-12 h-12">
-                  <Image
-                    src={exp?.user?.profilePicture || "/placeholder.svg"}
-                    alt="user-profile"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">
-                      @{exp?.user?.username}
+                <Card
+                  key={exp?.id}
+                  className="flex flex-col h-full bg-card border-32 hover:border-purple-600"
+                >
+                  <CardHeader className="flex flex-row items-center gap-4 pb-4">
+                    <div className="relative w-12 h-12">
+                      <Image
+                        src={exp?.user?.profilePicture || "/placeholder.svg"}
+                        alt="user-profile"
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-full"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">
+                          @{exp?.user?.username}
+                        </span>
+                        {exp?.user?.xAccountVerified && (
+                          <CheckCircle className="w-4 h-4 text-blue-500" />
+                        )}
+                      </div>
+                      <CardTitle className="text-base mt-1">
+                        {exp?.title}
+                      </CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow space-y-4">
+                    <div className="flex flex-wrap gap-2">
+                      {exp?.tags.map((tag: string, idx: number) => (
+                        <Badge
+                          key={idx}
+                          variant="secondary"
+                          className="text-xs"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <span>{`+${exp.bountySubmissions.length} participated`}</span>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between items-center pt-4 border-t">
+                    <span className="text-sm text-muted-foreground">
+                      {formatTimeRemaining(new Date(exp?.deadline))}
                     </span>
-                    {exp?.user?.xAccountVerified && (
-                      <CheckCircle className="w-4 h-4 text-blue-500" />
-                    )}
-                  </div>
-                  <CardTitle className="text-base mt-1">{exp?.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {exp?.tags.map((tag: string, idx: number) => (
-                    <Badge key={idx} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <span>{`+${exp.bountySubmissions.length} participated`}</span>
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between items-center pt-4 border-t">
-                <span className="text-sm text-muted-foreground">
-                  {formatTimeRemaining(new Date(exp?.deadline))}
-                </span>
-                <div className="flex items-center">
-                  <span className="font-medium">
-                    ${exp?.remainingAmount} left
-                  </span>
-                </div>
-              </CardFooter>
-            </Card>
+                    <div className="flex items-center">
+                      <span className="font-medium">
+                        ${exp?.remainingAmount} left
+                      </span>
+                    </div>
+                  </CardFooter>
+                </Card>
           ))}
         </div>
       ) : (
