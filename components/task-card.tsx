@@ -11,6 +11,7 @@ import { Badge } from "./ui/badge";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { ExploreData } from "../types/types";
+import NoTaskFound from "./no-task-fount";
 
 function formatTimeRemaining(deadline: Date) {
   const now = new Date();
@@ -87,7 +88,7 @@ export default function TaskCard({ exploreData }: TaskCardProps) {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500">No tasks available.</p>
+       <NoTaskFound />
       )}
     </div>
   );

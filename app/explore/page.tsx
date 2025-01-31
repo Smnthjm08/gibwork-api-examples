@@ -24,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import TaskCardSkeleton from "@/components/task-card-skeleton";
+import ExploreSkeleton from "@/components/explore-skeleton";
 
 const sortByOptions = [
   { value: "isFeatured", label: "Featured" },
@@ -98,9 +98,17 @@ export default function ExplorePage() {
     setSortBy(value);
   };
 
-  if (isLoading) {
-    return <TaskCardSkeleton />
-  }
+  const handleKeyDown = (event: { key: string; }) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  if (isLoading) return (
+    <div>
+      <ExploreSkeleton />
+    </div>
+  )
 
   if (error) {
     return <div className="text-center text-red-500 p-4">{error}</div>;
@@ -108,12 +116,16 @@ export default function ExplorePage() {
 
   return (
     <main className="w-full">
+      <h1 className="scroll-m-20 text-2xl flex px-8 pt-4 justify-start font-bold tracking-tight lg:text-4xl">
+        Explore Tasks
+      </h1>
       <div className="max-w-full px-4 sm:px-8 pt-6 flex flex-col sm:flex-row gap-4">
         <div className="flex-1 flex flex-col sm:flex-row gap-2">
           <Input
             type="text"
             placeholder="Search task..."
             value={search}
+            onKeyDown={handleKeyDown} // Handle Enter key
             onChange={(e) => setSearch(e.target.value)}
             className="w-full"
           />

@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import NavBar from "@/components/navbar";
+import AppWalletProvider from "@/components/providers/app-wallet-providers";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -23,15 +24,17 @@ export default function RootLayout({
       <body
         className={`${geist.className} antialiased flex flex-col min-h-screen`}
       >
+        <AppWalletProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <NavBar />
-          {children}
+            <NavBar />
+            {children}
         </ThemeProvider>
+          </AppWalletProvider>
       </body>
     </html>
   );
