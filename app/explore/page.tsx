@@ -1,6 +1,6 @@
 "use client";
 
-import TaskCard from "@/components/task-card";
+import TaskCard from "@/components/cards/task-card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ExploreData } from "@/types/types";

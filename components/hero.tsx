@@ -30,7 +30,9 @@ const Hero = () => {
               endpoints.
             </p>
             <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
+              <Link href={"/task/create"}>
               <Button className="w-full sm:w-auto">Create Task</Button>
+              </Link>
               <Link href="/explore">
                 <Button variant="outline" className="w-full sm:w-auto">
                   Explore Tasks

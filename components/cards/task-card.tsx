@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Card,
@@ -6,12 +6,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
+} from "../ui/card";
+import { Badge } from "../ui/badge";
 import { CheckCircle } from "lucide-react";
 import Image from "next/image";
-import { ExploreData } from "../types/types";
-import NoTaskFound from "./no-task-fount";
+import { ExploreData } from "../../types/types";
+import NoTaskFound from "../no-task-found";
 
 function formatTimeRemaining(deadline: Date) {
   const now = new Date();
@@ -81,14 +81,16 @@ export default function TaskCard({ exploreData }: TaskCardProps) {
                   {formatTimeRemaining(new Date(exp?.deadline))}
                 </span>
                 <div className="flex items-center">
-                  <span className="font-medium">${exp?.remainingAmount} left</span>
+                  <span className="font-medium">
+                    ${exp?.remainingAmount} left
+                  </span>
                 </div>
               </CardFooter>
             </Card>
           ))}
         </div>
       ) : (
-       <NoTaskFound />
+        <NoTaskFound />
       )}
     </div>
   );
